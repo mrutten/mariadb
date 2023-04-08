@@ -1,0 +1,19 @@
+---
+- name: Install MariaDB
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items: "{{ packages }}"
+  tags:
+  - installation
+  - packages
+
+- name: Configure bind address
+  ansible.builtin.lineinfile:
+    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+    regexp: ^bind-address
+    line: bind-address            = {{ bind_address }}
+  tags:
+  - configuration
+  - bind-address

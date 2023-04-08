@@ -1,0 +1,16 @@
+---
+- hosts: vm04
+  become: true
+  gather_facts: false
+  roles:
+    - mariadb
+  vars:
+    distro: "debian11"
+
+- hosts: vm05
+  become: true
+  gather_facts: false
+  roles:
+    - mariadb
+  vars:
+    distro: "rhel9"

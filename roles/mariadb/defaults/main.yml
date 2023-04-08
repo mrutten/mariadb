@@ -1,0 +1,4 @@
+---
+bind_address: "127.0.0.1"
+admin_user: "dba"
+admin_password_hash: "*74B1C21ACE0C2D6B0678A5E503D2A60E8F9651A3"

@@ -1,0 +1,6 @@
+[dbservers]
+vm04
+vm05
+
+[all:vars] 
+ansible_remote_tmp=/tmp
