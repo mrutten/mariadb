@@ -11,7 +11,9 @@ A host to install MariaDB on.
 Role Variables
 --------------
 
-Variables are defined in defaults.
+A set of default variables is defined in defaults.
+Distro specific variables are defined in vars.
+The playbook's variable distro specifies the distro vars being used.
 
 Dependencies
 ------------
@@ -21,7 +23,8 @@ None.
 Example Playbook
 ----------------
 
-time ansible-playbook mariadb.yml
+time ansible-playbook playbook.yml
+time ansible-playbook playbook.yml --tags configuration
 
 License
 -------
