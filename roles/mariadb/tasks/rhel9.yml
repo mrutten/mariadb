@@ -10,7 +10,6 @@
     state: present
     update_cache: true
   with_items: "{{ packages }}"
-  notify: Start MariaDB
   tags:
     - installation
     - packages

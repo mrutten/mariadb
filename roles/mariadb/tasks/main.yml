@@ -36,7 +36,7 @@
     - root-password
 
 - name: Create my.cnf
-  template: src=my.cnf dest=/root/.my.cnf
+  ansible.builtin.template: src=my.cnf dest=/root/.my.cnf
   when: mariadb_root_password.changed
   tags:
     - configuration

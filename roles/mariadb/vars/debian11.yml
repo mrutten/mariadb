@@ -4,3 +4,4 @@ packages:
   - python3-pymysql
 
 socket: "/var/run/mysqld/mysqld.sock"
+bind_address: "0.0.0.0"
