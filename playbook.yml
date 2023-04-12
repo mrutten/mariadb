@@ -1,5 +1,5 @@
 ---
-- hosts: vm04
+- hosts: db01
   become: true
   gather_facts: false
   roles:
@@ -7,7 +7,7 @@
   vars:
     distro: "debian11"
 
-- hosts: vm05
+- hosts: db02
   become: true
   gather_facts: false
   roles:
