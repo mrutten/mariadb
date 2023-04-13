@@ -5,10 +5,6 @@
 - name: Include distribution specific tasks
   include_tasks: "{{ distro }}.yml"
 
-- name: Print all available facts
-  ansible.builtin.debug:
-    var: ansible_facts
-
 - name: Start and enable MariaDB
   ansible.builtin.systemd:
     enabled: true
