@@ -1,5 +1,5 @@
 ---
 - import_playbook: installation.yml
-- import_playbook: bindaddress.yml
+- import_playbook: connection.yml
 - import_playbook: mysql-secure-installation.yml
 - import_playbook: dba.yml
