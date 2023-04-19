@@ -1,7 +1,0 @@
----
-packages:
-  - mariadb-server
-  - python3-PyMySQL
-
-socket: "/var/lib/mysql/mysql.sock"
-bind_address: "0.0.0.0"

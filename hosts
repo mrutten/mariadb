@@ -1,6 +1,0 @@
-[dbservers]
-db01
-db02
-
-[all:vars] 
-ansible_remote_tmp=/tmp

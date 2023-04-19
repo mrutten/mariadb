@@ -1,0 +1,42 @@
+---
+- name: Install MariaDB for Debian
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items:
+    - iproute2
+    - mariadb-server
+    - python3-pymysql
+  when: ansible_facts['os_family'] == 'Debian'
+  tags:
+    - installation-debian
+
+- name: Import Centos Official (workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2184640)
+  ansible.builtin.rpm_key:
+    state: present
+    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+  when: ansible_facts['os_family'] == 'RedHat'
+  tags:
+    - installation-redhat
+
+- name: Install MariaDB for Centos
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items:
+    - iproute
+    - mariadb-server
+    - python3-PyMySQL
+  when: ansible_facts['os_family'] == 'RedHat'
+  tags:
+    - installation-redhat
+
+- name: Start and enable MariaDB
+  ansible.builtin.systemd:
+    enabled: true
+    name: mariadb
+    state: started
+  tags:
+    - systemd-service

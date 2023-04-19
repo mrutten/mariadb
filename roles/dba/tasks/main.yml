@@ -1,0 +1,13 @@
+---
+- name: Create DBA
+  community.mysql.mysql_user:
+    login_user: root
+    name: "dba"
+    # SELECT PASSWORD('password');
+    password: "*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19"
+    encrypted: true
+    host: "%"
+    priv: "*.*:ALL,GRANT"
+    state: present
+  tags:
+    - create-dba

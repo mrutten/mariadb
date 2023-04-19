@@ -1,0 +1,55 @@
+---
+# mysql_secure_installation does 3 things;
+# 1. Change the default root password
+# 2. Remove anonymous users
+# 3. Remove test database and access to it
+
+- name: Generate new root password
+  command: openssl rand -hex 8 creates=/root/.my.cnf
+  register: root_password
+
+- name: Create /root/my.cnf
+  ansible.builtin.copy:
+    dest: /root/.my.cnf
+    content: |
+      [client]
+      user=root
+      password={{ root_password.stdout }}
+  when: root_password.changed
+  tags:
+    - my-cnf
+
+# root password change has not been applied at the database level yet
+# so socket authentication is used to connect to database as the root user
+- name: Get MariaDB socket
+  ansible.builtin.shell: ss -xa | grep mysql | awk '{ print $5 }'
+  register: socket
+  changed_when: false
+
+- name: Update root password
+  community.mysql.mysql_user:
+    host: localhost
+    login_user: root
+    login_unix_socket: "{{ socket.stdout }}"
+    name: root
+    password: "{{ root_password.stdout }}"
+  when: root_password.changed
+  tags:
+    - update-root-password
+ 
+- name: Remove anonymous users
+  community.mysql.mysql_user:
+    login_user: root
+    name: ""
+    host_all: true
+    state: absent
+  tags:
+    - remove-anonymous-users
+
+- name: Remove test database
+  community.mysql.mysql_db:
+    login_user: root
+    name: test
+    state: absent
+  tags:
+    - remove-test-database

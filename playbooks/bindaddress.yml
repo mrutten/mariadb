@@ -1,0 +1,7 @@
+---
+- name: MariaDB installation
+  hosts: dbservers
+  become: true
+  gather_facts: true
+  roles:
+    - bindaddress
