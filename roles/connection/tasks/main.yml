@@ -1,21 +1,31 @@
 ---
-- name: Configure bind address for Debian
+- name: Configure bind address for Debian / Ubuntu
   ansible.builtin.lineinfile:
     dest: /etc/mysql/mariadb.conf.d/50-server.cnf
     regexp: "^#?bind-address"
     line: bind-address = {{ bind_address }}
-  notify: Restart MariaDB
+  notify: restart mariadb
   when: ansible_facts['os_family'] == 'Debian'
   tags:
     - bind-address-debian
 
-- name: Configure bind address for Centos
+- name: Configure bind address for Suse
+  ansible.builtin.lineinfile:
+    dest: /etc/my.cnf
+    regexp: "^#?bind-address"
+    line: bind-address = {{ bind_address }}
+  when: ansible_facts['os_family'] == 'Suse'
+  notify: restart mariadb
+  tags:
+    - bind-address-suse
+
+- name: Configure bind address for Centos / RHEL
   ansible.builtin.lineinfile:
     dest: /etc/my.cnf.d/mariadb-server.cnf
     regexp: "^#?bind-address"
     line: bind-address = {{ bind_address }}
   when: ansible_facts['os_family'] == 'RedHat'
-  notify: Restart MariaDB  
+  notify: restart mariadb
   tags:
     - bind-address-redhat
   

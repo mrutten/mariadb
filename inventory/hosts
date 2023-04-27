@@ -1,8 +1,11 @@
 [dbservers]
-db01 ansible_host=192.168.2.4
-db02 ansible_host=192.168.2.5
+vm-centos9-db-01  ansible_host=192.168.2.4
+vm-debian11-db-02 ansible_host=192.168.2.5
+vm-suse15-db-03   ansible_host=192.168.2.6
+vm-rhel9-db-04    ansible_host=192.168.2.7
+vm-ubuntu22-db-05 ansible_host=192.168.2.8
 
 [all:vars]
-ansible_user="ansible"
-ansible_ssh_private_key_file=~/.ssh/ansible_id_ed25519
+ansible_user="ops"
+ansible_ssh_private_key_file=~/.ssh/id_ed25519
 ansible_remote_tmp=/tmp
