@@ -1,6 +1,2 @@
 [dbservers]
-vm-centos9-db-01  ansible_host=192.168.2.4
-vm-debian11-db-02 ansible_host=192.168.2.5
-vm-suse15-db-03   ansible_host=192.168.2.6
-vm-rhel9-db-04    ansible_host=192.168.2.7
-vm-ubuntu22-db-05 ansible_host=192.168.2.8
+lab01-srv01  ansible_host=10.10.0.2
