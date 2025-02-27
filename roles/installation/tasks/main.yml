@@ -23,7 +23,7 @@
     - python3-PyMySQL
   when: ansible_facts['os_family'] == 'Suse'
   tags:
-    - installation-suse    
+    - installation-suse
 
 - name: Import Centos Official (workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2184640)
   ansible.builtin.rpm_key:
@@ -47,9 +47,10 @@
     - installation-redhat
 
 - name: Start and enable MariaDB
-  ansible.builtin.systemd:
+  ansible.builtin.service:
     enabled: true
     name: mariadb
     state: started
   tags:
-    - systemd-service
+    - service
+

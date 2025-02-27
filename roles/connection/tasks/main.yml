@@ -28,5 +28,3 @@
   notify: restart mariadb
   tags:
     - bind-address-redhat
-  
-
